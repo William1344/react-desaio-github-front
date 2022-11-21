@@ -167,3 +167,34 @@
   text-align      : center;
 }
  
+.item{
+  display           : flex;
+  flex-direction    : row;
+  justify-content   : space-between;
+  align-items       : center;
+  background-color  : #f1f1f1;
+  border-bottom     : 1px solid #d5d5d5;
+  padding           : 0.5rem;
+}
+
+.item .info{
+  flex : 1;
+}
+.item .name{
+  font-size : 1.5rem;
+}
+.item .owner{
+  
+  font-size : 1rem;
+  color     : #666;
+}
+
+.item .btt{
+  padding         : 0.3rem;
+  border-radius   : 0.25rem;
+  border          : 0;
+  background-color: #2f855a;
+  color           : #fff;
+  font-size       : 1rem;
+  font-weight     : bold;
+}

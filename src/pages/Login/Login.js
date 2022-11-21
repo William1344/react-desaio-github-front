@@ -1,33 +1,44 @@
 import React from "react";
+import { AuthContext } from "../../contexts/auth";
+import api from "../../services/api";
 import "./styles.css";
 
 export default function Login() {
-
-  const [email, setEmail] = React.useState("");
+  const context = React.useContext(AuthContext);
+  const [email, setEmail]       = React.useState("");
   const [password, setPassword] = React.useState("");
 
-  function handleLogin() {
+  async function handleLogin() {
+    await context.login(email, password, false);
+    console.log("Login", context);
+    //return window.location.href = "/";
+  }
+
+  async function handleRegister() {
     // verifica se o email e senha estão preenchidos
-    if (email === "" || password === "") {
-      window.alert("Aviso\n"+"Preencha todos os campos!");
-      return 0;
-    } else {
-      window.alert("Campos\n"+"Email: "+email+"\nSenha: "+password);
-    }
+    if (email !== "" || password !== "") {
+      await context.login(email, password, true);
+    } else window.alert("Campos não preenchidos!");
   }
 
   return (
     <div id = "login">
       <h1 className="title">Login</h1>
+      {/*<label>
+        
+      Email: {context.user.email}{"\n"}
+        Password: {context.user.id}
+      </label>*/}
       <div className="form">
         <div className= "field">
           <label htmlFor="email">Email:</label>
           <input 
-            id="email" 
-            type="email" 
-            name="email" 
-            value={email}
-            onChange={e => setEmail(e.target.value)}
+            id          = "email" 
+            type        = "email" 
+            name        = "email" 
+            value       = {email}
+            placeholder = "exemple@email.com"
+            onChange    = {e => setEmail(e.target.value)}
           />
         </div>
         <div className= "field">
@@ -45,6 +56,10 @@ export default function Login() {
             type="submit"
             onClick={handleLogin}
           >Entrar</button>
+          <button 
+            type="submit"
+            onClick={handleRegister}
+          >Cadastrar</button>
         </div>
       </div>
     </div>

@@ -25,11 +25,11 @@ export function Search(props){
         placeholder = {props.placeholder}
       />
       <button
-        onClick = {props.onClickClear}
-      >Limpar</button>
-      <button
         onClick={props.onClick}
       >Buscar</button>
+      <button
+        onClick = {props.onClickClear}
+      >Limpar</button>
     </div>
   );
 }
@@ -49,6 +49,25 @@ export function Item(props){
         onClick   = {props.onClick}
       >Apagar</button>
     </li>
+  );
+}
+export function ItemPes(props){
+  const array = props.url.split("/")
+  const repoDe = array[array.length-2];
+  return(
+    <div className="item">
+      <div className="info">
+        <div className="name">{props.name} / {repoDe} </div>
+        <Link  
+          className = "owner"
+          to        = {props.url}
+        >{props.url}</Link>
+      </div>
+      <button 
+        className = "btt"
+        onClick   = {props.onClick}
+      >X</button>
+    </div>
   );
 }
 
